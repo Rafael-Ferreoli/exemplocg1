@@ -21,31 +21,34 @@
 			function init() {
 
 				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+				// instanciando a camera
 				camera.position.z = 400;
 
 				scene = new THREE.Scene();
 
 				const texture = new THREE.TextureLoader().load( './texturas/textura.jpg' );
-
+				// carrega textura
 				const geometry = new THREE.BoxGeometry( 200, 200, 200 );
+				// tamanho do cubo
 				const material = new THREE.MeshBasicMaterial( { map: texture } );
-
+				// material do cubo
 				mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				// tamnho da janela
 				document.body.appendChild( renderer.domElement );
 
-				//
+				// injeção da aplicação no html
 
 				window.addEventListener( 'resize', onWindowResize );
 
 			}
 
 			function onWindowResize() {
-
+// função quando muda o tamanho da tela
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
@@ -54,7 +57,7 @@
 			}
 
 			function animate() {
-
+// função de animação do cubo
 				requestAnimationFrame( animate );
 
 				mesh.rotation.x += 0.005;
